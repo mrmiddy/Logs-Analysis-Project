@@ -58,13 +58,13 @@ running the newspaper-stats.py file in order for the SQL queries in the newspape
 
 > 1.	SQL VIEW Name: log_path_num_nolimit : SQL query needed to be run at the
 command line prior to program execution for the top3articles() function:
-<!--
+
   create view log_path_num_nolimit AS SELECT path, count(*) AS num
     FROM log WHERE path != '/'
     GROUP BY path
     ORDER BY num DESC
     LIMIT 3;
--->
+
 
 > 2.	SQL VIEW Name: dateOf404s : SQL query needed to be run at the
 command line prior to program execution for the PercentageErrorDates() function.
