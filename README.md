@@ -111,7 +111,7 @@ database.  From your command line, run:
 
 > python newspaper-stats.py
 
-The program will run and will display the answers to questions one through three.
+The program will run and will display the answers to questions one through three in the Program Overview.
 
 # Credits
 
