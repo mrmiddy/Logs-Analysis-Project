@@ -113,6 +113,10 @@ database.  From your command line, run:
 
 The program will run and will display the answers to questions one through three in the Program Overview.
 
+# Output
+
+The output.txt file is a plain text file that is a copy of what the program should print in the command prompt when the program is run.
+
 # Credits
 
 I have partially used and modified the instructions for this project from
