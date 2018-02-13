@@ -60,29 +60,28 @@ running the newspaper-stats.py file in order for the SQL queries in the newspape
 command line prior to program execution for the top3articles() function:
 
     create view log_path_num_nolimit AS SELECT path, count(*) AS num
-      FROM log WHERE path != '/'
-      GROUP BY path
-      ORDER BY num DESC
-      LIMIT 3;
+        FROM log WHERE path != '/'
+        GROUP BY path
+        ORDER BY num DESC
+        LIMIT 3;
 
 
 > 2.	SQL VIEW Name: dateOf404s : SQL query needed to be run at the
 command line prior to program execution for the PercentageErrorDates() function.
-<!--
-  create view dateOf404s AS SELECT time::timestamp::date, count(*) AS date404
-    FROM log WHERE status != '200 OK'
-    GROUP BY time
-    ORDER BY date404 DESC;
--->
+
+    create view dateOf404s AS SELECT time::timestamp::date, count(*) AS date404
+        FROM log WHERE status != '200 OK'
+        GROUP BY time
+        ORDER BY date404 DESC;
+
 
 > 3.	SQL VIEW Name: totalerrorsperday : SQL query needed to be run at the
 command line prior to program execution for the PercentageErrorDates() function.
-<!--
-  create view totalreqperday AS SELECT time::timestamp::date,
-  count(*) AS reqperday
-  FROM log
-  GROUP BY time::timestamp::date;
--->
+
+    create view totalreqperday AS SELECT time::timestamp::date,
+        count(*) AS reqperday
+        FROM log
+        GROUP BY time::timestamp::date;
 
 Required Database
 
