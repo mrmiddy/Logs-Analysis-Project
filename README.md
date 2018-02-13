@@ -18,30 +18,30 @@ not take any input from the user. Instead, it connects to the database, uses SQL
 been accessed the most? This information is presented as a sorted list with the
 most popular article at the top.
 
-Example:
+    Example:
 
-    "Princess Shellfish Marries Prince Handsome" — 1201 views
-    "Baltimore Ravens Defeat Rhode Island Shoggoths" — 915 views
-    "Political Scandal Ends In Political Scandal" — 553 views
+        "Princess Shellfish Marries Prince Handsome" — 1201 views
+        "Baltimore Ravens Defeat Rhode Island Shoggoths" — 915 views
+        "Political Scandal Ends In Political Scandal" — 553 views
 
 2. Who are the most popular article authors of all time? That is, when summing
 up all of the articles each author has written, which authors get the most page views? This information is presented as a sorted list with the most popular
 author at the top.
 
-Example:
+    Example:
 
-    Ursula La Multa — 2304 views
-    Rudolf von Treppenwitz — 1985 views
-    Markoff Chaney — 1723 views
-    Anonymous Contributor — 1023 views
+        Ursula La Multa — 2304 views
+        Rudolf von Treppenwitz — 1985 views
+        Markoff Chaney — 1723 views
+        Anonymous Contributor — 1023 views
 
 3. On which days did more than 1% of requests lead to errors? The log table
 includes a column status that indicates the HTTP status code that the news site
 sent to the user's browser.
 
-Example:
+    Example:
 
-    July 29, 2016 — 2.5% errors
+        July 29, 2016 — 2.5% errors
 
 
 # Required Files, SQL VIEWS, and Database
