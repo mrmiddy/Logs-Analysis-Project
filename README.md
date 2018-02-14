@@ -46,7 +46,7 @@ sent to the user's browser.
 
 # Required Files, SQL VIEWS, and Database
 
-There is one main file and three SQL views included for this project.
+There is one main file and four SQL views included for this project.
 
 > 1.	newspaper-stats.py: This program contains the python code & SQL queries
 to generate the answers to the three questions described in the
@@ -56,10 +56,12 @@ README file and are noted when the VIEWS are required.
 The following SQL VIEWS are required to be run from the command line BEFORE
 running the newspaper-stats.py file in order for the SQL queries in the newspaper-stats.py file to properly execute.
 
+Please see the newspaper-stats.sql file for easier execution.
+
 > 1.	SQL VIEW Name: log_path_num_nolimit : SQL query needed to be run at the
 command line prior to program execution for the top3articles() function:
 
-    create view log_path_num_nolimit AS SELECT path, count(*) AS num
+    CREATE VIEW log_path_num_nolimit AS SELECT path, count(*) AS num
         FROM log WHERE path != '/'
         GROUP BY path
         ORDER BY num DESC
@@ -69,7 +71,7 @@ command line prior to program execution for the top3articles() function:
 > 2.	SQL VIEW Name: dateOf404s : SQL query needed to be run at the
 command line prior to program execution for the PercentageErrorDates() function.
 
-    create view dateOf404s AS SELECT time::timestamp::date, count(*) AS date404
+    CREATE VIEW dateOf404s AS SELECT time::timestamp::date, count(*) AS date404
         FROM log WHERE status != '200 OK'
         GROUP BY time
         ORDER BY date404 DESC;
@@ -78,7 +80,15 @@ command line prior to program execution for the PercentageErrorDates() function.
 > 3.	SQL VIEW Name: totalerrorsperday : SQL query needed to be run at the
 command line prior to program execution for the PercentageErrorDates() function.
 
-    create view totalreqperday AS SELECT time::timestamp::date,
+    CREATE VIEW totalerrorsperday AS SELECT time, count(*) AS errorsperday
+        FROM dateOf404s
+        GROUP BY time;
+
+
+> 4.  SQL VIEW Name: totalreqperday : SQL query needed to be run at the
+command line prior to program execution for the PercentageErrorDates() function.
+
+    CREATE VIEW totalreqperday AS SELECT time::timestamp::date,
         count(*) AS reqperday
         FROM log
         GROUP BY time::timestamp::date;
@@ -112,10 +122,6 @@ database.  From your command line, run:
 > python newspaper-stats.py
 
 The program will run and will display the answers to questions one through three in the Program Overview.
-
-# Output
-
-The output.txt file is a plain text file that is a copy of what the program should print in the command prompt when the program is run.
 
 # Credits
 

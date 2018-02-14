@@ -1,5 +1,17 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""This is a internal reporting tool program to be run from the command line.
+
+It uses information from a mock newspaper database to display what kind of
+articles a newspaper site's readers like by answering the following questions.
+
+1. What are the most popular three articles of all time?
+
+2. Who are the most popular article authors of all time?
+
+3. On which days did more than 1% of requests lead to errors?
+"""
+
 
 import psycopg2
 
@@ -7,9 +19,12 @@ import psycopg2
 DBNAME = "news"
 
 
-# Generate & display the most popular three articles of all time. NOTE: Relies
-# on the log_path_num_nolimit sql view, please see README.md for details.
 def top3articles():
+    """Generate & display the most popular three articles of all time.
+
+    NOTE: Relies on the log_path_num_nolimit sql view,
+    please see README.md for details.
+    """
     top3_query = '''
         SELECT articles.title, num FROM articles, log_path_num_nolimit
         WHERE log_path_num_nolimit.path =
@@ -31,8 +46,8 @@ def top3articles():
     return results
 
 
-# Generate & display the most popular article authors of all time.
 def topAuthors():
+    """Generate & display the most popular article authors of all time."""
     top_authors_query = '''
         SELECT authors.name, count(log.path) AS views
         FROM log JOIN articles ON log.path = CONCAT('/article/', articles.slug)
@@ -57,8 +72,8 @@ def topAuthors():
     return results
 
 
-# Generate & display the days where more than 1% of requests lead to errors.
 def PercentageErrorDates():
+    """Display the days where more than 1% of requests lead to errors."""
     PercentageErrorQuery = '''
         SELECT to_char(totalerrorsperday.time,'FMMonth FMDD, YYYY'),
         cast(totalerrorsperday.errorsperday AS FLOAT)/
@@ -85,6 +100,7 @@ def PercentageErrorDates():
     conn.close()
 
     return results
+
 
 # Run the program.
 if __name__ == "__main__":
